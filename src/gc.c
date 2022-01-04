@@ -16,12 +16,14 @@ t_gc	*gc_init(void)
 t_gc	*gc_append(t_gc *self, void *garbage)
 {
 	// append garbage to dustbin.
+	(void)self;
+	(void)garbage;
 	return (self);
 }
 
 t_gc	*gc_clean(t_gc *self)
 {
 	// clean all dustbin garbages.
+	(void)self;
 	return (self);
 }
-
