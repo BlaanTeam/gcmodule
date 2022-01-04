@@ -26,7 +26,16 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 
 t_gc	*gc_clean(t_gc *self)
 {
-	// clean all dustbin garbages.
-	(void)self;
+	t_dustbin	*to_free;
+	
+	while (self->dustbin)
+	{
+		to_free = self->dustbin;
+		self->dustbin = self->dustbin->next;
+		free(to_free->garbage);
+		free(to_free);
+	}
+	free(self);
+	self = NULL;
 	return (self);
 }
