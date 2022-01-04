@@ -15,9 +15,12 @@ t_gc	*gc_init(void)
 
 t_gc	*gc_append(t_gc *self, void *garbage)
 {
-	// append garbage to dustbin.
-	(void)self;
-	(void)garbage;
+	t_dustbin	*new;
+
+	new = (t_dustbin *)malloc(sizeof(t_dustbin));
+	new->garbage = garbage;
+	new->next = self->dustbin;
+	self->dustbin = new;
 	return (self);
 }
 
