@@ -1,3 +1,13 @@
+/**
+ * @file gc.h
+ * @author BlaanTeam (blaanteam@gmail.com)
+ * @brief The garbage collector header file
+ * @version 0.1
+ * @date 2022-01-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef GC_H
 #define GC_H
 #include <stdlib.h>
