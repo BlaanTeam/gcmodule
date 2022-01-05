@@ -17,7 +17,11 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 {
 	t_dustbin	*new;
 
+	if (!self || !garbage)
+		return (NULL);
 	new = (t_dustbin *)malloc(sizeof(t_dustbin));
+	if (!new)
+		return (NULL);
 	new->garbage = garbage;
 	new->next = self->dustbin;
 	self->dustbin = new;
@@ -28,6 +32,8 @@ void	gc_clean(t_gc *self)
 {
 	t_dustbin	*to_free;
 	
+	if (!self)
+		return ;
 	while (self->dustbin)
 	{
 		to_free = self->dustbin;
