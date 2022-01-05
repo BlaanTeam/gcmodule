@@ -24,7 +24,7 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 	return (self);
 }
 
-t_gc	*gc_clean(t_gc *self)
+void	gc_clean(t_gc *self)
 {
 	t_dustbin	*to_free;
 	
@@ -37,5 +37,4 @@ t_gc	*gc_clean(t_gc *self)
 	}
 	free(self);
 	self = NULL;
-	return (self);
 }
