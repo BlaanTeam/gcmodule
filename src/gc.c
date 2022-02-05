@@ -44,7 +44,7 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 		return (NULL);
 	new = (t_dustbin *)malloc(sizeof(t_dustbin));
 	if (!new)
-		return (gc_clean(self), NULL);
+		return (gc_clean(&self, GC_CLR_ALL), NULL);
 	new->garbage = garbage;
 	new->next = self->dustbin;
 	self->dustbin = new;
@@ -72,21 +72,26 @@ void	gc_clear_dustbin(t_dustbin *dustbin)
 /**
  * @brief Clean all dustbin grabages.
  * 
- * @param t_gc	self	an instance of t_gc. 
+ * @param t_gc	**self		an instance of t_gc.
+ * @param t_gc_flag flag	a flag describing which dustbin to be freed
  */
-void	gc_clean(t_gc *self)
+void	gc_clean(t_gc **self, t_gc_flag flag)
 {
-	t_dustbin	*to_free;
+	t_dustbin	*dustbin;
+	t_dustbin	*tmp_dustbin;
 
-	if (!self)
+	if (!self || !*self)
 		return ;
-	while (self->dustbin)
+	if (flag & GC_CLR_ALL)
 	{
-		to_free = self->dustbin;
-		self->dustbin = self->dustbin->next;
-		free(to_free->garbage);
-		free(to_free);
+		gc_clear_dustbin((*self)->dustbin);
+		gc_clear_dustbin((*self)->tmp_dustbin);
+		free(self);
+		self = NULL;
 	}
-	free(self);
-	self = NULL;
+	else if (flag & GC_CLR_TMP)
+	{
+		gc_clear_dustbin((*self)->tmp_dustbin);
+		(*self)->tmp_dustbin = NULL;
+	}
 }
