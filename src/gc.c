@@ -52,6 +52,24 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 }
 
 /**
+ * @brief Clear list
+ * 
+ * @param t_dustbin *dustbin	a pointer to dustbin that shall to be cleared
+ */
+void	gc_clear_dustbin(t_dustbin *dustbin)
+{
+	t_dustbin	*to_free;
+
+	while (dustbin)
+	{
+		to_free = dustbin;
+		dustbin = dustbin->next;
+		free(to_free->garbage);
+		free(to_free);
+	}
+}
+
+/**
  * @brief Clean all dustbin grabages.
  * 
  * @param t_gc	self	an instance of t_gc. 
