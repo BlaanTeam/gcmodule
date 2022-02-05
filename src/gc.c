@@ -37,7 +37,7 @@ t_gc	*gc_init(void)
  * @param t_gc_flag flag	a flag describing which dustbin to be appended.
  * @return t_gc*			an instance of t_gc.
  */
-t_gc	*gc_append(t_gc *self, void *garbage)
+t_gc	*gc_append(t_gc *self, void *garbage, t_gc_flag flag)
 {
 	t_dustbin	*new;
 
@@ -45,10 +45,20 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 		return (NULL);
 	new = (t_dustbin *)malloc(sizeof(t_dustbin));
 	if (!new)
-		return (gc_clean(&self, GC_CLR_ALL), NULL);
+		return (gc_clean(&self, GC_ALL), NULL);
 	new->garbage = garbage;
-	new->next = self->dustbin;
-	self->dustbin = new;
+	if (flag & GC_ALL)
+	{
+		new->next = self->dustbin;
+		self->dustbin = new;
+	}
+	else if (flag & GC_TMP)
+	{
+		new->next = self->tmp_dustbin;
+		self->tmp_dustbin = new;
+	}
+	else
+		return (gc_clean(&self, GC_ALL), NULL);
 	return (self);
 }
 
@@ -78,9 +88,6 @@ void	gc_clear_dustbin(t_dustbin *dustbin)
  */
 void	gc_clean(t_gc **self, t_gc_flag flag)
 {
-	t_dustbin	*dustbin;
-	t_dustbin	*tmp_dustbin;
-
 	if (!self || !*self)
 		return ;
 	if (flag & GC_ALL)
