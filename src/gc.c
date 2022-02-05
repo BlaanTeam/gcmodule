@@ -34,6 +34,7 @@ t_gc	*gc_init(void)
  * 
  * @param t_gc	self		an instance of t_gc. 
  * @param void	*garbage	a void pointer of garbage.
+ * @param t_gc_flag flag	a flag describing which dustbin to be appended.
  * @return t_gc*			an instance of t_gc.
  */
 t_gc	*gc_append(t_gc *self, void *garbage)
@@ -54,7 +55,7 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 /**
  * @brief Clear list
  * 
- * @param t_dustbin *dustbin	a pointer to dustbin that shall to be cleared
+ * @param t_dustbin *dustbin	a pointer to dustbin that shall to be cleared.
  */
 void	gc_clear_dustbin(t_dustbin *dustbin)
 {
@@ -73,7 +74,7 @@ void	gc_clear_dustbin(t_dustbin *dustbin)
  * @brief Clean all dustbin grabages.
  * 
  * @param t_gc	**self		an instance of t_gc.
- * @param t_gc_flag flag	a flag describing which dustbin to be freed
+ * @param t_gc_flag flag	a flag describing which dustbin to be freed.
  */
 void	gc_clean(t_gc **self, t_gc_flag flag)
 {
