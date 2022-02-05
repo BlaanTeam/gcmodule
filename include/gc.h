@@ -11,6 +11,8 @@
 #ifndef GC_H
 #define GC_H
 #include <stdlib.h>
+#define GC_FD	(1 << 0)
+#define GC_FTD	(1 << 1)
 
 typedef struct s_dustbin
 {
@@ -18,6 +20,7 @@ typedef struct s_dustbin
 	struct s_dustbin	*next;
 }	t_dustbin;
 
+typedef unsigned short t_gc_flag;
 typedef struct s_gc
 {
 	t_dustbin	*dustbin;
