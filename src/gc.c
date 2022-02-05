@@ -92,7 +92,7 @@ void	gc_clean(t_gc **self, t_gc_flag flag)
 		return ;
 	if (flag & GC_ALL)
 	{
-		gc_clear_dustbin((*self)->dustbin);∂
+		gc_clear_dustbin((*self)->dustbin);
 		gc_clear_dustbin((*self)->tmp_dustbin);
 		free(*self);
 		self = NULL;
