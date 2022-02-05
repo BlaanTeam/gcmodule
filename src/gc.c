@@ -43,7 +43,7 @@ t_gc	*gc_append(t_gc *self, void *garbage)
 		return (NULL);
 	new = (t_dustbin *)malloc(sizeof(t_dustbin));
 	if (!new)
-		return (NULL);
+		return (gc_clean(self), NULL);
 	new->garbage = garbage;
 	new->next = self->dustbin;
 	self->dustbin = new;
