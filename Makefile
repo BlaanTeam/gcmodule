@@ -1,4 +1,4 @@
-NAME = gc
+NAME = libgc.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = src
