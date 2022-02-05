@@ -21,6 +21,7 @@ typedef struct s_dustbin
 typedef struct s_gc
 {
 	t_dustbin	*dustbin;
+	t_dustbin	*tmp_dustbin;
 	struct s_gc	*(*append)(struct s_gc *, void *);
 	void		(*clean)(struct s_gc *);
 }	t_gc;

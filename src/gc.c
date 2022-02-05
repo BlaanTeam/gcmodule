@@ -23,6 +23,7 @@ t_gc	*gc_init(void)
 	if (!gc)
 		return (NULL);
 	gc->dustbin = NULL;
+	gc->tmp_dustbin = NULL;
 	gc->append = &gc_append;
 	gc->clean = &gc_clean;
 	return (gc);
