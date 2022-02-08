@@ -11,6 +11,8 @@
 #ifndef GC_H
 #define GC_H
 #include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
 #define GC_ALL			1U
 #define GC_TMP			2U
 #define GC_DESTROY_SELF	4U
