@@ -10,6 +10,18 @@
  */
 #include "gc.h"
 
+void	*gc_malloc(t_gc *gc, size_t size, t_gc_flag flag)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+		gc_exit_error(gc, "malloc");
+	if (gc)
+		gc_append(gc, ptr, flag);
+	return (ptr);
+}
+
 /**
  * @brief Initialize the garbage collector.
  * 
