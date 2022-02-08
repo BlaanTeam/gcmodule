@@ -45,7 +45,7 @@ t_gc	*gc_append(t_gc *self, void *garbage, t_gc_flag flag)
 		return (NULL);
 	new = (t_dustbin *)malloc(sizeof(t_dustbin));
 	if (!new)
-		return (gc_clean(&self, GC_ALL), NULL);
+		return (gc_clean(&self, GC_DESTROY_SELF), NULL);
 	new->garbage = garbage;
 	if (flag & GC_ALL)
 	{
@@ -58,7 +58,7 @@ t_gc	*gc_append(t_gc *self, void *garbage, t_gc_flag flag)
 		self->tmp_dustbin = new;
 	}
 	else
-		return (gc_clean(&self, GC_ALL), NULL);
+		return (gc_clean(&self, GC_DESTROY_SELF), NULL);
 	return (self);
 }
 
