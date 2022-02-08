@@ -34,6 +34,8 @@ typedef struct s_gc
 
 t_gc	*gc_init(void);
 t_gc	*gc_append(t_gc *self, void *garbage, t_gc_flag flag);
+void	gc_exit_error(t_gc *gc, char *msg);
 void	gc_clean(t_gc **self, t_gc_flag flag);
+void	*gc_malloc(t_gc *gc, size_t size, t_gc_flag flag);
 
 #endif
