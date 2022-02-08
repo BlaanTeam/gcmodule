@@ -10,6 +10,13 @@
  */
 #include "gc.h"
 
+void	gc_exit_error(t_gc *gc, char *msg)
+{
+	gc_clean(&gc, GC_DESTROY_SELF);
+	perror(msg);
+	exit(EXIT_FAILURE);
+}
+
 void	*gc_malloc(t_gc *gc, size_t size, t_gc_flag flag)
 {
 	void	*ptr;
