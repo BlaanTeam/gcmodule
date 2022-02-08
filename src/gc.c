@@ -90,12 +90,15 @@ void	gc_clean(t_gc **self, t_gc_flag flag)
 {
 	if (!self || !*self)
 		return ;
-	if (flag & GC_ALL)
+	if (flag & GC_DESTROY_SELF || flag & GC_ALL)
 	{
 		gc_clear_dustbin((*self)->dustbin);
 		gc_clear_dustbin((*self)->tmp_dustbin);
-		free(*self);
-		*self = NULL;
+		if (flag & GC_DESTROY_SELF)
+		{
+			free(*self);
+			*self = NULL;
+		}
 	}
 	else if (flag & GC_TMP)
 	{

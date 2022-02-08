@@ -11,8 +11,9 @@
 #ifndef GC_H
 #define GC_H
 #include <stdlib.h>
-#define GC_ALL	1U
-#define GC_TMP	2U
+#define GC_ALL			1U
+#define GC_TMP			2U
+#define GC_DESTROY_SELF	4U
 
 typedef struct s_dustbin
 {
